@@ -1,12 +1,12 @@
 
-# 📊 ETL Full and Incremental Extraction
+# ETL Full and Incremental Extraction
 
 **Student Name:** Arlen Ngahu  
 **Student ID:** 667855  
 
----
 
-## 📖 Description
+
+# Description
 
 This project implements an ETL (Extract, Transform, Load) process in a Jupyter Notebook using a dataset of Breast Cancer Wisconsin (Diagnostic) records. 
 
@@ -16,9 +16,9 @@ The notebook performs two types of data extraction from a CSV file:
 
 The notebook uses a timestamp column in the dataset to determine new records for incremental extraction and updates the `last_extraction.txt` file with the latest extraction time after each incremental extraction.
 
----
 
-## 🛠️ Tools Used
+
+# Tools Used
 
 - Python 3.x  
 - Jupyter Notebook (via Google Colab)  
@@ -26,11 +26,11 @@ The notebook uses a timestamp column in the dataset to determine new records for
 - datetime  
 - Breast Cancer Wisconsin (Diagnostic) dataset from Kaggle  
 
----
 
-## 🚀 How to Reproduce
 
-### a) How to Run the Notebook:
+# How to Reproduce
+
+# a) How to Run the Notebook:
 
 1. Upload the following files to your Google Colab `/content/` directory:
    - `data.csv` (Breast Cancer dataset)
@@ -45,15 +45,14 @@ The notebook uses a timestamp column in the dataset to determine new records for
 
 4. You can view the extracted data outputs and updated timestamp in the notebook and Colab file directory.
 
----
 
-### b) Where the Data Comes From:
+
+# b) Where the Data Comes From:
 
 The dataset used in this project is the **Breast Cancer Wisconsin (Diagnostic) dataset**, publicly available on [Kaggle](https://www.kaggle.com/datasets/uciml/breast-cancer-wisconsin-data).
 
----
 
-## 📂 Project Structure
+# Project Structure
 
 ```
 ETL_Extract_ArlenNgahu_667855/
@@ -63,9 +62,21 @@ ETL_Extract_ArlenNgahu_667855/
 ├── README.md                 # Project description and instructions
 ```
 
----
 
-## 📌 Notes
+
+# Notes
 
 - Incremental extraction requires a `timestamp` column in the dataset.  
 - If your dataset lacks one, you may need to add or adjust a time-based field to use incremental extraction.
+
+# New in Lab 4: Data Transformation
+
+Added new transformation steps:
+- Removed duplicates
+- Handled missing values by filling with mean
+- Added a new calculated column: 'radius_texture_product' (mean_radius * mean_texture)
+- Converted 'diagnosis' codes to full labels (Malignant/Benign)
+
+New outputs:
+- transformed_full.csv
+- transformed_incremental.csv
