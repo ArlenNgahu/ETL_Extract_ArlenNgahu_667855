@@ -1,8 +1,8 @@
 
 # ETL Full and Incremental Extraction
 
-**Student Name:** Arlen Ngahu  
-**Student ID:** 667855  
+# Student Name: Arlen Ngahu  
+# Student ID: 667855  
 
 
 
@@ -25,6 +25,7 @@ The notebook uses a timestamp column in the dataset to determine new records for
 - pandas  
 - datetime  
 - Breast Cancer Wisconsin (Diagnostic) dataset from Kaggle  
+- sqlite3
 
 
 
@@ -56,17 +57,25 @@ The dataset used in this project is the **Breast Cancer Wisconsin (Diagnostic) d
 
 ```
 ETL_Extract_ArlenNgahu_667855/
-├── etl_extract.ipynb         # Jupyter notebook containing the ETL code
-├── data.csv                  # Breast Cancer dataset from Kaggle
-├── last_extraction.txt       # Text file storing last extraction timestamp
-├── README.md                 # Project description and instructions
+├── etl_extract.ipynb # Data extraction notebook
+├── etl_transform.ipynb # Data transformation notebook
+├── etl_load.ipynb # Data loading notebook
+├── data.csv # Breast Cancer dataset from Kaggle
+├── last_extraction.txt # Text file storing last extraction timestamp
+├── transformed_full.csv # Full transformed data
+├── transformed_incremental.csv # Incrementally transformed data
+├── loaded_data/ # Directory for loaded SQLite DBs
+│ ├── full_data.db
+│ └── incremental_data.db
+├── README.md # Project description and instructions
+└── .gitignore # Git ignore rules
 ```
 
 
 
 # Notes
 
-- Incremental extraction requires a `timestamp` column in the dataset.  
+- Incremental extraction requires a `timestamp` column in the dataset but I used the 'id' column since I lacked any similar column.  
 - If your dataset lacks one, you may need to add or adjust a time-based field to use incremental extraction.
 
 # New in Lab 4: Data Transformation
@@ -80,3 +89,18 @@ Added new transformation steps:
 New outputs:
 - transformed_full.csv
 - transformed_incremental.csv
+
+# Loading Method:  
+- Loaded both `transformed_full.csv` and `transformed_incremental.csv` into SQLite databases using `pandas.to_sql()`.
+
+# Sample Code:
+```python
+import sqlite3
+conn = sqlite3.connect('full_data.db')
+df.to_sql('full_data', conn, if_exists='replace', index=False)
+
+New outputs: 
+- full_data.db
+- incremental_data.db
+
+
